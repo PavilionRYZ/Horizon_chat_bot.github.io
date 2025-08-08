@@ -51,7 +51,7 @@
 <td width="50%">
 
 ### 🔧 **Developer Experience**
-- **TypeScript Ready** for better code quality
+- **JavaScript Ready** for better code quality
 - **Hot Module Replacement** for instant development
 - **ESLint & Prettier** configuration included
 - **Component-based Architecture** for maintainability

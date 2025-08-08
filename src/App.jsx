@@ -19,7 +19,7 @@ const App = () => {
   const scrollAreaRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Initialize Gemini AI
+
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
@@ -67,11 +67,10 @@ const App = () => {
   };
 
   const formatMessage = (content) => {
-    // Split by code blocks first
     const parts = content.split(/```(\w+)?\n([\s\S]*?)```/);
 
     return parts.map((part, index) => {
-      if (index % 3 === 2) { // This is code content
+      if (index % 3 === 2) {
         const language = parts[index - 1] || 'text';
         return (
           <div key={index} className="relative my-3">
@@ -89,7 +88,7 @@ const App = () => {
             </pre>
           </div>
         );
-      } else if (index % 3 === 0) { // This is regular text
+      } else if (index % 3 === 0) {
         return (
           <div key={index} className="prose prose-sm max-w-none">
             {part.split('\n').map((line, lineIndex) => {
@@ -120,14 +119,12 @@ const App = () => {
     });
   };
 
-  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // Focus input after sending message
   useEffect(() => {
     if (!loading && inputRef.current) {
       inputRef.current.focus();
@@ -155,9 +152,9 @@ const App = () => {
         ">
           <CardTitle className="flex items-center gap-2 text-slate-800 text-base sm:text-lg">
             <Bot className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
-            AI Assistant
+            Horizon AI Assistant
             <span className="text-xs sm:text-sm font-normal text-slate-500 ml-auto">
-              Enhanced Chat Experience
+              Enhanced Chat Experience with: <span className="font-medium">gemini-2.5-flash</span>
             </span>
           </CardTitle>
         </CardHeader>
